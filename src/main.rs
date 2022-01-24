@@ -15,6 +15,7 @@ fn main() -> std::io::Result<()> {
             "create-shortcut" => create_shortcut(),
             "stb" => show_task_bar(),
             "htb" => hide_task_bar(),
+            "reboot" => reboot(),
             "exit" => break Ok(()),
             _ => println!("Command not found. Type 'help' to see more information"),
         };
@@ -53,4 +54,18 @@ fn hide_task_bar() {
         }
         Err(_) => println!("Error"),
     }
+}
+
+fn reboot() {
+    let output = if cfg!(target_os = "windows") {
+        Command::new("cmd")
+            .args(["/C", "echo hello"])
+            .output()
+            .expect("failed to execute process")
+    } else {
+        Command::new("reboot")
+            .output()
+            .expect("failed to execute process")
+    };
+    output.stdout;
 }

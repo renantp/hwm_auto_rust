@@ -1,0 +1,8 @@
+[Desktop Entry]
+Encoding=UTF-8
+Version=1.0
+Type=Application
+Terminal=true
+Exec=/home/pi/CVNBuild/StartHandWashingMachine.sh
+Name=Hand Washing Machine Type 3
+Icon=/home/pi/CVNBuild/icon.png
