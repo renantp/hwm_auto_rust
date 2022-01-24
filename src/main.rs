@@ -40,6 +40,7 @@ fn show_task_bar() {
     let buf = String::from("@lxpanel --profile LXDE-pi\n@pcmanfm --desktop --profile LXDE-pi\n@xscreensaver -no-splash\n");
     fs::write(&temp_file, buf).expect("Something wrong");
     fs::copy(&temp_file, "/home/pi/config/lxsession/LXDE-pi/autostart").expect("Something wrong");
+    reboot();
 }
 fn hide_task_bar() {
     let temp_directory = env::temp_dir();
@@ -47,7 +48,7 @@ fn hide_task_bar() {
     let buf = String::from("#@lxpanel --profile LXDE-pi\n@pcmanfm --desktop --profile LXDE-pi\n@xscreensaver -no-splash\n");
     fs::write(&temp_file, buf).expect("Something wrong");
     fs::copy(&temp_file, "/home/pi/config/lxsession/LXDE-pi/autostart").expect("Something wrong");
-    let mut cmd = Command::new("ls");
+    let mut cmd = Command::new("reboot");
     match cmd.output() {
         Ok(output) => {
             println!("Ok {}", output.status);
